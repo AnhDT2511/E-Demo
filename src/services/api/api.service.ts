@@ -5,7 +5,7 @@ export const apiService = {
 
   get: (resource: string, slug: string) => anestAxios.get(`${resource}/${slug}`),
 
-  post: (resource: string, params: object) => anestAxios.post(`${resource}`, params),
+  post: (resource: string, params: object) => anestAxios.post(`${resource}`, {headers: {'Content-Type': 'multipart/form-data' }, params}),
 
   put: (resource: string, slug: string, params: object) => anestAxios.put(`${resource}/${slug}`, params),
 

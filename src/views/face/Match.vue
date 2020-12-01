@@ -1,6 +1,36 @@
 <template>
-  <div>
-    <h1>Match</h1>
+  <div class="content bg-dark-ui border-ui">
+    <h6 class="title mx-1 mb-4">So khớp giấy tờ</h6>
+    <div class="about-info bg-dark-ui border-ui">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <fieldset class="bg-dark-ui">
+            <legend>Ảnh giấy tờ tuỳ thân</legend>
+            <input v-if="!url1" type="file" @change="onFileChange1" />
+            <div class="preview">
+              <img v-if="url1" :src="url1" />
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-group col-md-6">
+          <fieldset class="bg-dark-ui">
+            <legend>Ảnh chân dung</legend>
+            <input v-if="!url2" type="file" @change="onFileChange2" />
+            <div class="preview">
+              <img v-if="url2" :src="url2" />
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-md-12 text-right">
+          <button class="btn btn-lg btn-gray">
+            <font-awesome-icon
+              class="text-sea-green mr-2"
+              :icon="['fas', 'check']"
+            />Kiểm tra
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,12 +39,39 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Info extends Vue {
-  private isPartner = true;
+  private url1 = "";
+  private url2 = "";
+  private formData = new FormData();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onFileChange1(e: any) {
+    const file = e.target.files[0];
+    this.url1 = URL.createObjectURL(file);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onFileChange2(e: any) {
+    const file = e.target.files[0];
+    this.url2 = URL.createObjectURL(file);
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.right .tab-content .about .about-info {
-  padding: 1rem 1rem 0.25rem 1rem;
+.right .content {
+  padding: 1rem 1.25rem 1.5rem;
 }
+
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+@import "../../assets/css/form.scss";
 </style>

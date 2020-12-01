@@ -5,19 +5,19 @@
         <li>
           <router-link :to="{ name: 'Match' }">
             <font-awesome-icon
-              class="text-violet mr-2"
-              :icon="['fas', 'user-friends']"
+              class="text-pink mr-2"
+              :icon="['far', 'address-card']"
               fixed-width
-            />So khớp khuôn mặt
+            />So khớp giấy tờ
           </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'Match11' }">
             <font-awesome-icon
-              class="text-pink mr-2"
-              :icon="['far', 'address-card']"
+              class="text-violet mr-2"
+              :icon="['fas', 'user-friends']"
               fixed-width
-            />So khớp giấy tờ
+            />So khớp khuôn mặt
           </router-link>
         </li>
       </ul>

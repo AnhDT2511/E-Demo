@@ -33,14 +33,14 @@ body {
 
 .right {
   /*----- Title -----*/
-
   .title {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     margin-left: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.125rem;
     margin-bottom: 1rem;
   }
 }
+
 
 /*----- Dropdown -----*/
 
@@ -54,13 +54,11 @@ body {
   border: 1px solid #3a3b3c !important;
   border-radius: .5rem !important;
   left: -1.2rem !important;
-
   svg {
     text-align: inherit !important;
     white-space: nowrap !important;
     margin-right: .5rem !important;
   }
-
   .dropdown-item {
     font-size: .95rem !important;
     border-radius: .45rem !important;
@@ -83,15 +81,12 @@ body {
   margin-bottom: 1.5rem;
   padding: 0 15px;
   width: 100%;
-
   .f-bot {
     padding: 6px .25rem;
-
     span {
       padding: 2px 0;
       display: inline-block;
     }
-
     .copyright {
       text-align: right;
     }
@@ -103,11 +98,9 @@ body {
     .f-bot .copyright {
       text-align: left;
     }
-
     .f-top {
       padding: 3rem 0 2.5rem;
     }
-
     .copyright {
       display: none;
     }
@@ -181,17 +174,14 @@ body {
 .modal-header {
   border-bottom: 1px solid transparent !important;
   padding: 1rem 1.25rem;
-
   .close {
     font-size: 2rem;
     padding: .85rem 1rem;
     color: #d4d4d4;
     text-shadow: none;
-
     &:hover {
       color: #c7af8b;
     }
-
     &:focus {
       outline: none;
     }
@@ -200,7 +190,6 @@ body {
 
 .modal-body {
   padding: 2rem;
-
   p {
     line-height: 25px;
   }
@@ -216,7 +205,6 @@ body {
     margin-left: 0;
     margin-right: 0;
   }
-
   .modal-body {
     max-height: 80vh;
     overflow-y: auto;
@@ -234,7 +222,6 @@ body {
     margin-top: 1.75rem;
     margin-bottom: 3rem;
   }
-
   p i {
     font-size: 12px;
   }

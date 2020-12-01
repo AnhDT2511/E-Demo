@@ -1,11 +1,11 @@
 <template>
   <div class="content bg-dark-ui border-ui">
-    <h6 class="title mx-1 mb-4">Face Matching: So khớp khuôn mặt</h6>
-    <div class="about-info bg-dark-ui border-ui mb-4">
+    <h6 class="title mx-1 mb-4">So khớp khuôn mặt</h6>
+    <div class="about-info bg-dark-ui border-ui">
       <div class="form-row">
         <div class="form-group col-md-6">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung</legend>
+            <legend>Ảnh chân dung 1</legend>
             <input v-if="!url1" type="file" @change="onFileChange1" />
             <div class="preview">
               <img v-if="url1" :src="url1" />
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group col-md-6">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung</legend>
+            <legend>Ảnh chân dung 2</legend>
             <input v-if="!url2" type="file" @change="onFileChange2" />
             <div class="preview">
               <img v-if="url2" :src="url2" />
@@ -22,11 +22,11 @@
           </fieldset>
         </div>
         <div class="col-md-12 text-right">
-          <button @click="submitFiles()" class="btn btn-lg btn-gray mb-3">
+          <button @click="submitFiles()" class="btn btn-lg btn-gray">
             <font-awesome-icon
               class="text-sea-green mr-2"
               :icon="['fas', 'check']"
-            />Cập nhật thông tin
+            />Kiểm tra
           </button>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default class Info extends Vue {
 
 <style scoped lang="scss">
 .right .content {
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.25rem 1.5rem;
 }
 
 .preview {
