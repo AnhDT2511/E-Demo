@@ -15,9 +15,18 @@
           <router-link :to="{ name: 'Match11' }">
             <font-awesome-icon
               class="text-violet mr-2"
-              :icon="['fas', 'user-friends']"
+              :icon="['fas', 'people-arrows']"
               fixed-width
             />So khớp khuôn mặt
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'Match1n' }">
+            <font-awesome-icon
+              class="text-sea-green mr-2"
+              :icon="['fas', 'users']"
+              fixed-width
+            />So khớp nhiều khuôn mặt
           </router-link>
         </li>
       </ul>

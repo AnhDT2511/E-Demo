@@ -1,11 +1,11 @@
 <template>
   <div class="content bg-dark-ui border-ui">
-    <h6 class="title mx-1 mb-4">So khớp khuôn mặt</h6>
+    <h6 class="title mx-1 mb-4">So khớp khuôn mặt trong nhiều khuôn mặt</h6>
     <div class="about-info bg-dark-ui border-ui">
       <div class="form-row">
         <div class="form-group col-md-6">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung 1</legend>
+            <legend>Ảnh một khuôn mặt</legend>
             <input v-if="!url1" type="file" @change="onFileChange1" />
             <div class="preview">
               <img v-if="url1" :src="url1" />
@@ -14,7 +14,7 @@
         </div>
         <div class="form-group col-md-6">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung 2</legend>
+            <legend>Ảnh nhiều khuôn mặt</legend>
             <input v-if="!url2" type="file" @change="onFileChange2" />
             <div class="preview">
               <img v-if="url2" :src="url2" />
@@ -56,7 +56,7 @@
           <td>Thông báo</td>
           <td
             class="text-error"
-            :class="{ 'text-success': response.message === 'Thành công!' }"
+            :class="{ 'text-success': response.message === 'Thành công' }"
           >
             {{ response.message }}
           </td>
@@ -74,7 +74,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
-import Match11Module from "../../store/match11/match11.module";
+import MatchModule from "../../store/match/match.module";
 
 @Component
 export default class Info extends Vue {
@@ -82,7 +82,7 @@ export default class Info extends Vue {
   private url2 = "";
   private response = null;
   private formData = new FormData();
-  private Match11Instance = getModule(Match11Module, this.$store);
+  private MatchInstance = getModule(MatchModule, this.$store);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFileChange1(e: any) {
@@ -107,8 +107,8 @@ export default class Info extends Vue {
 
   async submitFiles() {
     try {
-      await this.Match11Instance.upload(this.formData);
-      this.response = this.Match11Instance.getResponse;
+      await this.MatchInstance.upload(this.formData);
+      this.response = this.MatchInstance.getResponse;
     } catch (e) {
       console.log(e.response.data);
       this.response = e.response.data;

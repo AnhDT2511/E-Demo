@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Index from "../views/face/Index.vue";
 import Match from "../views/face/Match.vue";
 import Match11 from "../views/face/Match11.vue";
+import Match1n from "../views/face/Match1n.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,14 @@ const routes: Array<RouteConfig> = [
         component: Match11,
         meta: {
           title: "Match11",
+        },
+      },
+      {
+        path: "match1n",
+        name: "Match1n",
+        component: Match1n,
+        meta: {
+          title: "Match1n",
         },
       },
     ],
