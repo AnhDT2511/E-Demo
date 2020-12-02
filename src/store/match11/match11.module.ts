@@ -1,6 +1,8 @@
+import { anestAxios } from "@/libs/axios";
+import { RESOURCE } from "@/services/api/resource";
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
-import { match11Service } from "@/services/match11/match11.service";
 
+const api = RESOURCE.match11;
 @Module({
   namespaced: true,
   name: "match11",
@@ -22,8 +24,8 @@ export default class Match11Module extends VuexModule {
 
   // Actions
   @Action({ commit: "setResponse", rawError: true })
-  async fetch(data: any) {
-    const response = await match11Service.submitFile(data);
+  async upload(data: any) {
+    const response = await anestAxios.post(`${api}`, data);
     return response.data;
   }
 }

@@ -22,13 +22,46 @@
           </fieldset>
         </div>
         <div class="col-md-12 text-right">
-          <button @click="submitFiles()" class="btn btn-lg btn-gray">
+          <button @click="submitFiles" class="btn btn-lg btn-gray">
             <font-awesome-icon
               class="text-sea-green mr-2"
               :icon="['fas', 'check']"
             />Kiểm tra
           </button>
+          <button @click="clear" class="btn btn-lg btn-gray ml-3">
+            <font-awesome-icon
+              class="text-danger mr-2"
+              :icon="['fas', 'reply']"
+            />Thử lại
+          </button>
         </div>
+      </div>
+    </div>
+    <div v-if="response" class="mt-4">
+      <div class="divider color-tan">Kết quả</div>
+      <table class="table table-bordered mb-0">
+        <tr>
+          <td>Trùng khớp</td>
+          <td>{{ response.is_match ? "Có" : "Không" }}</td>
+        </tr>
+        <tr>
+          <td>Tỷ lệ trùng khớp</td>
+          <td>{{ String(response.similarity).slice(0, 5) + "%" }}</td>
+        </tr>
+        <tr>
+          <td>Thông báo</td>
+          <td
+            class="text-error"
+            :class="{ 'text-success': response.message === 'Thành công!' }"
+          >
+            {{ response.message }}
+          </td>
+        </tr>
+      </table>
+
+      <h6 class="mt-4">Raw data</h6>
+      <div class="raw-data">
+        {{ response }}
       </div>
     </div>
   </div>
@@ -43,6 +76,7 @@ import Match11Module from "../../store/match11/match11.module";
 export default class Info extends Vue {
   private url1 = "";
   private url2 = "";
+  private response = null;
   private formData = new FormData();
   private Match11Instance = getModule(Match11Module, this.$store);
 
@@ -50,23 +84,30 @@ export default class Info extends Vue {
   onFileChange1(e: any) {
     const file = e.target.files[0];
     this.url1 = URL.createObjectURL(file);
+    this.formData.append("file1", file);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFileChange2(e: any) {
     const file = e.target.files[0];
     this.url2 = URL.createObjectURL(file);
+    this.formData.append("file2", file);
+  }
+
+  clear() {
+    this.url1 = "";
+    this.url2 = "";
+    this.response = null;
+    this.formData = new FormData();
   }
 
   async submitFiles() {
-    this.formData.append("files1", this.url1);
-    this.formData.append("files2", this.url2);
-    console.log(this.formData);
     try {
-      await this.Match11Instance.fetch(this.formData);
-      console.log(this.Match11Instance.getResponse);
+      await this.Match11Instance.upload(this.formData);
+      this.response = this.Match11Instance.getResponse;
     } catch (e) {
-      console.log(e);
+      console.log(e.response.data);
+      this.response = e.response.data;
     }
   }
 }
@@ -86,6 +127,31 @@ export default class Info extends Vue {
 .preview img {
   max-width: 100%;
   max-height: 200px;
+}
+
+.table {
+  color: #e4e6eb;
+}
+
+.table-bordered {
+  border: 1px solid #3a3b3c;
+}
+
+.table-bordered td {
+  border: 1px solid #3a3b3c;
+}
+
+.text-error {
+  color: #dc3545;
+}
+
+.raw-data {
+  padding: 1rem;
+  background-color: #1b1c1d;
+  border-radius: 0.45rem;
+  margin-top: 0.5rem;
+  font-family: monospace;
+  font-size: 1rem;
 }
 
 @import "../../assets/css/form.scss";

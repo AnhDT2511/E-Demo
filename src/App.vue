@@ -11,18 +11,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TheHeader from "./components/common/TheHeader.vue";
-// import $ from "jquery";
 
 @Component({
   components: {
     TheHeader,
   },
 })
-export default class App extends Vue {
-  mounted() {
-    //document.body.classList.add("bg-dark");
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">

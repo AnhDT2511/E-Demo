@@ -33,7 +33,7 @@ export default class Index extends Vue {}
 
 <style scoped lang="scss">
 .container {
-  padding-top: 9rem;
+  padding-top: 8rem;
 }
 
 @media (max-width: 575.98px) {
