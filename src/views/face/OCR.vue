@@ -1,24 +1,16 @@
 <template>
   <div class="content bg-dark-ui border-ui">
-    <h6 class="title mx-1 mb-4">So khớp giấy tờ</h6>
+    <h6 class="title mx-1 mb-4">Trích xuất thông tin giấy tờ</h6>
     <div class="about-info bg-dark-ui border-ui">
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
           <fieldset class="bg-dark-ui">
             <legend>Ảnh giấy tờ tuỳ thân</legend>
             <input v-if="!url1" type="file" @change="onFileChange1" />
             <div class="preview">
               <img v-if="url1" :src="url1" />
             </div>
-          </fieldset>
-        </div>
-        <div class="form-group col-md-6">
-          <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung</legend>
-            <input v-if="!url2" type="file" @change="onFileChange2" />
-            <div class="preview">
-              <img v-if="url2" :src="url2" />
-            </div>
+            <!-- <img v-bind:src="'data:image/jpeg;base64,' + imageBytes" /> -->
           </fieldset>
         </div>
         <div class="col-md-12 text-right">
@@ -26,7 +18,7 @@
             <font-awesome-icon
               class="text-sea-green mr-2"
               :icon="['fas', 'check']"
-            />Kiểm tra
+            />Trích xuất
           </button>
         </div>
       </div>
@@ -38,7 +30,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Info extends Vue {
+export default class OCR extends Vue {
   private url1 = "";
   private url2 = "";
   private formData = new FormData();

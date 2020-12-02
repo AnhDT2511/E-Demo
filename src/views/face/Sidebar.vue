@@ -3,12 +3,12 @@
     <div class="sidebar-menu bg-dark-ui border-ui mb-3">
       <ul>
         <li>
-          <router-link :to="{ name: 'Match' }">
+          <router-link :to="{ name: 'OCR' }">
             <font-awesome-icon
               class="text-pink mr-2"
               :icon="['far', 'address-card']"
               fixed-width
-            />So khớp giấy tờ
+            />Trích xuất thông tin giấy tờ
           </router-link>
         </li>
         <li>

@@ -18,14 +18,12 @@ import { Component, Vue } from "vue-property-decorator";
 import LeftSide from "@/components/layout/LeftSide.vue";
 import RightSide from "@/components/layout/RightSide.vue";
 import Sidebar from "./Sidebar.vue";
-import Match from "./Match.vue";
 
 @Component({
   components: {
     LeftSide,
     RightSide,
     Sidebar,
-    Match,
   },
 })
 export default class Index extends Vue {}

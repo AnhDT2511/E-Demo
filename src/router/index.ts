@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Index from "../views/face/Index.vue";
-import Match from "../views/face/Match.vue";
+import OCR from "../views/face/OCR.vue";
 import Match11 from "../views/face/Match11.vue";
 import Match1n from "../views/face/Match1n.vue";
 
@@ -12,12 +12,12 @@ const routes: Array<RouteConfig> = [
     path: "/",
     name: "Face",
     component: Index,
-    redirect: "/match",
+    redirect: "/ocr",
     children: [
       {
-        path: "match",
-        name: "Match",
-        component: Match,
+        path: "ocr",
+        name: "OCR",
+        component: OCR,
         meta: {
           title: "Match",
         },
