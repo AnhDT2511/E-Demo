@@ -6,11 +6,10 @@
         <div class="form-group col-md-12">
           <fieldset class="bg-dark-ui">
             <legend>Ảnh giấy tờ tuỳ thân</legend>
-            <input v-if="!url1" type="file" @change="onFileChange1" />
+            <input v-if="!url" type="file" @change="onFileChange" />
             <div class="preview">
-              <img v-if="url1" :src="url1" />
+              <img v-if="url" :src="url" />
             </div>
-            <!-- <img v-bind:src="'data:image/jpeg;base64,' + imageBytes" /> -->
           </fieldset>
         </div>
         <div class="col-md-12 text-right">
@@ -31,20 +30,13 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class OCR extends Vue {
-  private url1 = "";
-  private url2 = "";
+  private url = "";
   private formData = new FormData();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFileChange1(e: any) {
+  onFileChange(e: any) {
     const file = e.target.files[0];
-    this.url1 = URL.createObjectURL(file);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFileChange2(e: any) {
-    const file = e.target.files[0];
-    this.url2 = URL.createObjectURL(file);
+    this.url = URL.createObjectURL(file);
   }
 }
 </script>

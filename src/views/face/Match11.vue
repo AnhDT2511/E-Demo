@@ -24,8 +24,14 @@
         <div class="col-md-12 text-right">
           <button @click="submitFiles" class="btn btn-lg btn-gray">
             <font-awesome-icon
+              v-if="!rotate"
               class="text-sea-green mr-2"
               :icon="['fas', 'check']"
+            />
+            <font-awesome-icon
+              v-if="rotate"
+              class="text-warning fa-spin mr-2"
+              :icon="['fas', 'spinner']"
             />Kiểm tra
           </button>
           <button @click="clear" class="btn btn-lg btn-gray ml-3">
@@ -42,7 +48,12 @@
       <table class="table table-bordered mb-0">
         <tr>
           <td>Trùng khớp</td>
-          <td>{{ response.is_match ? "Có" : "Không" }}</td>
+          <td
+            class="text-error"
+            :class="{ 'text-success': response.is_match === true }"
+          >
+            {{ response.is_match ? "Có" : "Không" }}
+          </td>
         </tr>
         <tr>
           <td>Tỷ lệ trùng khớp</td>
@@ -54,12 +65,7 @@
         </tr>
         <tr>
           <td>Thông báo</td>
-          <td
-            class="text-error"
-            :class="{ 'text-success': response.message === 'Thành công!' }"
-          >
-            {{ response.message }}
-          </td>
+          <td>{{ response.message }}</td>
         </tr>
       </table>
 
@@ -80,6 +86,7 @@ import Match11Module from "../../store/match11/match11.module";
 export default class Info extends Vue {
   private url1 = "";
   private url2 = "";
+  private rotate = false;
   private response = null;
   private formData = new FormData();
   private Match11Instance = getModule(Match11Module, this.$store);
@@ -101,17 +108,23 @@ export default class Info extends Vue {
   clear() {
     this.url1 = "";
     this.url2 = "";
+    this.rotate = false;
     this.response = null;
     this.formData = new FormData();
   }
 
   async submitFiles() {
-    try {
-      await this.Match11Instance.upload(this.formData);
-      this.response = this.Match11Instance.getResponse;
-    } catch (e) {
-      console.log(e.response.data);
-      this.response = e.response.data;
+    if (this.url1.length === 0 || this.url2.length === 0) {
+      this.$toasted.error("Vui lòng chọn ảnh trước khi kiểm tra.");
+    } else {
+      this.rotate = true;
+      try {
+        await this.Match11Instance.upload(this.formData);
+        this.response = this.Match11Instance.getResponse;
+      } catch (e) {
+        this.response = e.response.data;
+      }
+      this.rotate = false;
     }
   }
 }
@@ -135,6 +148,14 @@ export default class Info extends Vue {
 
 .table {
   color: #e4e6eb;
+}
+
+.table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .table-bordered {

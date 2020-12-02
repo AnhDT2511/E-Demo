@@ -11,11 +11,15 @@
             />Trích xuất thông tin giấy tờ
           </router-link>
         </li>
+      </ul>
+    </div>
+    <div class="sidebar-menu bg-dark-ui border-ui mb-3">
+      <ul>
         <li>
           <router-link :to="{ name: 'Match11' }">
             <font-awesome-icon
               class="text-violet mr-2"
-              :icon="['fas', 'people-arrows']"
+              :icon="['fas', 'user-friends']"
               fixed-width
             />So khớp khuôn mặt
           </router-link>
@@ -31,59 +35,19 @@
         </li>
       </ul>
     </div>
-    <!-- <div class="sidebar-menu bg-dark-ui border-ui mb-3">
+    <div class="sidebar-menu bg-dark-ui border-ui mb-3">
       <ul>
         <li>
-          <router-link :to="{ name: 'ProfilePayIn' }">
+          <router-link :to="{ name: 'Gender' }">
             <font-awesome-icon
-              class="text-violet mr-2"
-              :icon="['fas', 'plus']"
+              class="text-warning mr-2"
+              :icon="['fas', 'venus-mars']"
               fixed-width
-            />Nạp tiền
-          </router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'ProfileWithdraw' }">
-            <font-awesome-icon
-              class="text-sea-green mr-2"
-              :icon="['fas', 'reply']"
-              fixed-width
-            />Rút tiền
-          </router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'ProfileWithdraw' }">
-            <font-awesome-icon
-              class="text-info mr-2"
-              :icon="['fas', 'history']"
-              fixed-width
-            />Lịch sử giao dịch
+            />Xác định giới tính
           </router-link>
         </li>
       </ul>
     </div>
-    <div class="sidebar-menu bg-dark-ui border-ui mb-3">
-      <ul>
-        <li>
-          <a href="profile-manager.html">
-            <font-awesome-icon
-              class="text-primary mr-2"
-              :icon="['fas', 'chart-line']"
-              fixed-width
-            />Quản lý tài khoản
-          </a>
-        </li>
-        <li>
-          <a href="profile-setting.html">
-            <font-awesome-icon
-              class="text-warning mr-2"
-              :icon="['fas', 'cog']"
-              fixed-width
-            />Cài đặt tài khoản
-          </a>
-        </li>
-      </ul>
-    </div> -->
   </div>
 </template>
 

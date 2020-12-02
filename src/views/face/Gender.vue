@@ -1,23 +1,14 @@
 <template>
   <div class="content bg-dark-ui border-ui">
-    <h6 class="title mx-1 mb-4">So khớp khuôn mặt trong nhiều khuôn mặt</h6>
+    <h6 class="title mx-1 mb-4">Xác định giới tính</h6>
     <div class="about-info bg-dark-ui border-ui">
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh một khuôn mặt</legend>
-            <input v-if="!url1" type="file" @change="onFileChange1" />
+            <legend>Ảnh chân dung</legend>
+            <input v-if="!url" type="file" @change="onFileChange" />
             <div class="preview">
-              <img v-if="url1" :src="url1" />
-            </div>
-          </fieldset>
-        </div>
-        <div class="form-group col-md-6">
-          <fieldset class="bg-dark-ui">
-            <legend>Ảnh nhiều khuôn mặt</legend>
-            <input v-if="!url2" type="file" @change="onFileChange2" />
-            <div class="preview">
-              <img v-if="url2" :src="url2" />
+              <img v-if="url" :src="url" />
             </div>
           </fieldset>
         </div>
@@ -47,32 +38,49 @@
       <div class="divider color-tan">Kết quả</div>
       <table class="table table-bordered mb-0">
         <tr>
-          <td>Trùng khớp</td>
-          <td
-            class="text-error"
-            :class="{ 'text-success': response.is_match === true }"
-          >
-            {{ response.is_match ? "Có" : "Không" }}
+          <td>Tuổi</td>
+          <td>
+            {{ response.results[0].age }}
           </td>
         </tr>
         <tr>
-          <td>Tỷ lệ trùng khớp</td>
+          <td>Giới tính</td>
           <td>
-            {{
-              parseFloat(String(response.similarity).slice(0, 6)) * 100 + "%"
-            }}
+            {{ response.results[0].gender === 1 ? "Nam" : "Nữ" }}
           </td>
         </tr>
         <tr>
           <td>Thông báo</td>
           <td>{{ response.message }}</td>
         </tr>
+        <tr>
+          <td>Khuôn mặt</td>
+          <td>
+            <img
+              v-bind:src="
+                'data:image/jpeg;base64,' +
+                  this.response.results[0].face.slice(
+                    2,
+                    this.response.results[0].face.length - 1,
+                  )
+              "
+            />
+          </td>
+        </tr>
       </table>
 
-      <h6 class="mt-4">Raw data</h6>
+      <!-- <h6 class="mt-4">Raw data</h6>
       <div class="raw-data">
         {{ response }}
-      </div>
+      </div> -->
+    </div>
+    <div v-if="message" class="mt-4">
+      <div class="divider color-tan">Kết quả</div>
+      <table class="table table-bordered mb-0">
+        <tr>
+          <td class="text-center">{{ message }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -80,49 +88,43 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
-import MatchModule from "../../store/match/match.module";
+import GenderModule from "../../store/gender/gender.module";
 
 @Component
-export default class Info extends Vue {
-  private url1 = "";
-  private url2 = "";
+export default class OCR extends Vue {
+  private url = "";
   private rotate = false;
   private response = null;
+  private message = "";
   private formData = new FormData();
-  private MatchInstance = getModule(MatchModule, this.$store);
+  private GenderInstance = getModule(GenderModule, this.$store);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFileChange1(e: any) {
+  onFileChange(e: any) {
     const file = e.target.files[0];
-    this.url1 = URL.createObjectURL(file);
-    this.formData.append("file1", file);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFileChange2(e: any) {
-    const file = e.target.files[0];
-    this.url2 = URL.createObjectURL(file);
-    this.formData.append("file2", file);
+    this.url = URL.createObjectURL(file);
+    this.formData.append("file", file);
   }
 
   clear() {
-    this.url1 = "";
-    this.url2 = "";
+    this.url = "";
+    this.message = "";
     this.rotate = false;
     this.response = null;
     this.formData = new FormData();
   }
 
   async submitFiles() {
-    if (this.url1.length === 0 || this.url2.length === 0) {
+    if (this.url.length === 0) {
       this.$toasted.error("Vui lòng chọn ảnh trước khi kiểm tra.");
     } else {
       this.rotate = true;
       try {
-        await this.MatchInstance.upload(this.formData);
-        this.response = this.MatchInstance.getResponse;
+        await this.GenderInstance.upload(this.formData);
+        this.response = this.GenderInstance.getResponse;
       } catch (e) {
-        this.response = e.response.data;
+        this.$toasted.error("Ảnh không có khuôn mặt.");
+        this.message = e.response.data.message;
       }
     }
     this.rotate = false;
@@ -163,6 +165,7 @@ export default class Info extends Vue {
 }
 
 .raw-data {
+  word-wrap: break-word;
   padding: 1rem;
   background-color: #1b1c1d;
   border-radius: 0.45rem;
