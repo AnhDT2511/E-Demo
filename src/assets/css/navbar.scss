@@ -3,12 +3,10 @@
 .nav-bar {
   padding: .625rem;
   margin-top: 1rem;
-  margin-bottom: 1.25rem;
-
+  margin-bottom: 1.65rem;
   .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
-
     a {
       color: #c7af8b;
       padding: 0 .35rem;
@@ -16,28 +14,23 @@
       font-weight: 500;
       font-size: 1.55rem;
       font-style: italic;
-
       &:hover {
         color: #ffc107;
         text-decoration: none;
       }
     }
   }
-
   a {
     color: #e4e6eb;
   }
-
   .nav-bar-content {
     display: flex;
     justify-content: space-between;
-
     .nav-btn>ul {
       display: flex;
       justify-content: space-between;
     }
   }
-
   .nav-btn {
     .btn-icon {
       width: 2.5rem;
@@ -52,20 +45,16 @@
       pointer-events: none;
       transition: .3s;
       position: relative;
-  
       .dropdown-toggle::after {
         display: none;
       }
-  
       a {
         pointer-events: auto;
         position: relative;
       }
-  
       .icon {
         font-size: 1.125rem !important;
       }
-  
       .c-badge {
         position: absolute;
         top: -2px;
@@ -80,52 +69,41 @@
         text-align: center;
       }
     }
-
     .btn-icon>a:hover {
       background-color: transparent !important;
     }
-
     ul.dropdown-menu {
       top: 18px !important;
       padding: .6rem;
     }
-
     .dropdown-menu {
       .dropdown-item {
         padding: .65rem;
-
         &:hover {
           background-color: #3a3b3c;
         }
-
         &.view-all-link {
           padding: .5rem .65rem !important;
         }
-
         .media {
           .media-object {
             border-radius: 50%;
           }
-
           .media-heading {
             font-weight: 500;
             font-size: .95rem;
           }
-
           .text {
             font-size: .925rem;
           }
         }
       }
-
       .dropdown-item>a {
         display: block;
-
         &:hover {
           text-decoration: none;
         }
       }
-
       &.action-dropdown {
         .dropdown-item {
           padding: .5rem .65rem;
@@ -136,28 +114,13 @@
 }
 
 
-/* .nav-bar .nav-btn .btn-icon:hover {
-  background-color: #4e4f50;
-} */
-
-
 /* ----- Responsive for Nav bar ----- */
 
 @media (max-width: 991.98px) {
   .nav-bar {
-    .navbar-brand {
-      display: none;
-    }
-
-    .px-fix {
-      padding-left: 18%;
-      padding-right: 18%;
-    }
-
     .nav-bar-content {
       .nav-btn {
         width: 100%;
-
         ul {
           width: 100%;
         }

@@ -1,5 +1,5 @@
-import { anestAxios } from "@/libs/axios";
-import { RESOURCE } from "@/services/api/resource";
+import { fisAxios } from "@/libs/axios";
+import { RESOURCE } from "@/resource/resource";
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 
 const api = RESOURCE.gender;
@@ -25,7 +25,7 @@ export default class GenderModule extends VuexModule {
   // Actions
   @Action({ commit: "setResponse", rawError: true })
   async upload(data: any) {
-    const response = await anestAxios.post(`${api}`, data);
+    const response = await fisAxios.post(`${api}`, data);
     return response.data;
   }
 }

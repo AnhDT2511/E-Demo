@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar bg-dark-ui border-ui">
     <div class="container-fluid">
-      <div class="nav-bar-content px-fix">
+      <div class="nav-bar-content">
         <div class="navbar-brand">
           <a class="color-gradient" href="index.html">FACE SERVICES</a>
         </div>

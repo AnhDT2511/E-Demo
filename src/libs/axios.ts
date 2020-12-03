@@ -5,6 +5,6 @@ const baseURL = "https://973162dea8aa.ngrok.io";
 //const baseURL = "http://localhost:8198";
 
 // ALL DEFAULT CONFIGURATION HERE
-export const anestAxios = axios.create({
+export const fisAxios = axios.create({
   baseURL,
 });

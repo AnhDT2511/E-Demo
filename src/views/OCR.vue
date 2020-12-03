@@ -42,20 +42,6 @@ export default class OCR extends Vue {
 </script>
 
 <style scoped lang="scss">
-.right .content {
-  padding: 1rem 1.25rem 1.5rem;
-}
-
-.preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.preview img {
-  max-width: 100%;
-  max-height: 200px;
-}
-
-@import "../../assets/css/form.scss";
+@import "../assets/css/style.scss";
+@import "../assets/css/form.scss";
 </style>

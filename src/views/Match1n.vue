@@ -80,7 +80,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
-import MatchModule from "../../store/match/match.module";
+import Match1nModule from "../store/match1n/match1n.module";
 
 @Component
 export default class Info extends Vue {
@@ -89,7 +89,7 @@ export default class Info extends Vue {
   private rotate = false;
   private response = null;
   private formData = new FormData();
-  private MatchInstance = getModule(MatchModule, this.$store);
+  private Match1nInstance = getModule(Match1nModule, this.$store);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFileChange1(e: any) {
@@ -119,8 +119,8 @@ export default class Info extends Vue {
     } else {
       this.rotate = true;
       try {
-        await this.MatchInstance.upload(this.formData);
-        this.response = this.MatchInstance.getResponse;
+        await this.Match1nInstance.upload(this.formData);
+        this.response = this.Match1nInstance.getResponse;
       } catch (e) {
         this.response = e.response.data;
       }
@@ -131,45 +131,6 @@ export default class Info extends Vue {
 </script>
 
 <style scoped lang="scss">
-.right .content {
-  padding: 1rem 1.25rem 1.5rem;
-}
-
-.preview {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.preview img {
-  max-width: 100%;
-  max-height: 200px;
-}
-
-.table {
-  color: #e4e6eb;
-}
-
-.table-bordered {
-  border: 1px solid #3a3b3c;
-}
-
-.table-bordered td {
-  border: 1px solid #3a3b3c;
-}
-
-.text-error {
-  color: #dc3545;
-}
-
-.raw-data {
-  padding: 1rem;
-  background-color: #1b1c1d;
-  border-radius: 0.45rem;
-  margin-top: 0.5rem;
-  font-family: monospace;
-  font-size: 1rem;
-}
-
-@import "../../assets/css/form.scss";
+@import "../assets/css/style.scss";
+@import "../assets/css/form.scss";
 </style>

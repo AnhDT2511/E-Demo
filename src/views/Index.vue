@@ -31,7 +31,7 @@ export default class Index extends Vue {}
 
 <style scoped lang="scss">
 .container {
-  padding-top: 8rem;
+  padding-top: 7rem;
 }
 
 @media (max-width: 575.98px) {
@@ -41,6 +41,4 @@ export default class Index extends Vue {}
     padding-left: 0 !important;
   }
 }
-
-@import "../../assets/css/label-info-panel.scss";
 </style>

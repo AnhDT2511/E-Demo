@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Index from "../views/face/Index.vue";
-import OCR from "../views/face/OCR.vue";
-import Match11 from "../views/face/Match11.vue";
-import Match1n from "../views/face/Match1n.vue";
-import Gender from "../views/face/Gender.vue";
+import Index from "../views/Index.vue";
+import OCR from "../views/OCR.vue";
+import Match11 from "../views/Match11.vue";
+import Match1n from "../views/Match1n.vue";
+import Gender from "../views/Gender.vue";
 
 Vue.use(VueRouter);
 
