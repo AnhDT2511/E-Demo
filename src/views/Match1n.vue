@@ -67,13 +67,13 @@
           <td>Thông báo</td>
           <td>{{ response.message }}</td>
         </tr>
-        <tr>
+        <tr v-if="response.face1">
           <td>Khuôn mặt</td>
           <td>
             <img v-bind:src="'data:image/jpeg;base64,' + response.face1" />
           </td>
         </tr>
-        <tr>
+        <tr v-if="response.face2">
           <td>Đánh dấu khuôn mặt</td>
           <td>
             <img
