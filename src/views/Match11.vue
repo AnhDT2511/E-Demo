@@ -144,7 +144,7 @@ export default class Info extends Vue {
 
 <style scoped lang="scss">
 td img {
-  border-radius: 0.55rem;
+  border-radius: 0.45rem;
 }
 
 @import "../assets/css/style.scss";
