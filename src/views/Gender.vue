@@ -126,7 +126,7 @@ td {
   text-align: center;
   vertical-align: middle !important;
   img {
-    border-radius: 0.55rem;
+    border-radius: 0.45rem;
   }
 }
 
