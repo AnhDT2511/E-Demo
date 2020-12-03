@@ -152,7 +152,7 @@ td img {
 
 .fix-size {
   width: 100%;
-  max-width: 598px;
+  max-width: 595px;
 }
 
 @import "../assets/css/style.scss";
