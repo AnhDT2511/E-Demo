@@ -1,11 +1,11 @@
 <template>
   <div class="content bg-dark-ui border-ui">
-    <h6 class="title mx-1 mb-4">Xác định giới tính</h6>
+    <h6 class="title mx-1 mb-4">Nhận dạng người nổi tiếng</h6>
     <div class="about-info bg-dark-ui border-ui">
       <div class="form-row">
         <div class="form-group col-md-12">
           <fieldset class="bg-dark-ui">
-            <legend>Ảnh chân dung</legend>
+            <legend>Ảnh người cần nhận dạng</legend>
             <input v-if="!url" type="file" @change="onFileChange" />
             <div class="preview">
               <img v-if="url" :src="url" />
@@ -23,7 +23,7 @@
               v-if="rotate"
               class="text-warning fa-spin mr-2"
               :icon="['fas', 'spinner']"
-            />Kiểm tra
+            />Nhận dạng
           </button>
           <button @click="clear" class="btn btn-lg btn-gray ml-3">
             <font-awesome-icon
@@ -38,26 +38,13 @@
       <div class="divider color-tan">Kết quả</div>
       <table class="table table-bordered mb-0">
         <tr>
-          <th>Khuôn mặt</th>
-          <th>Tuổi</th>
-          <th>Giới tính</th>
-        </tr>
-        <tr v-for="item in response.results" :key="item.face">
-          <td>
-            <img
-              width="50"
-              v-bind:src="'data:image/jpeg;base64,' + item.face"
-            />
-          </td>
-          <td>{{ item.age }} </td>
-          <td>{{ item.gender === 1 ? "Nam" : "Nữ" }} </td>
+          <td class="text-center">{{
+            response.result[0].similarity > 0.9
+              ? response.result[0].faceId
+              : "Không phải người nổi tiếng."
+          }}</td>
         </tr>
       </table>
-
-      <!-- <h6 class="mt-4">Raw data</h6>
-      <div class="raw-data">
-        {{ response }}
-      </div> -->
     </div>
     <div v-if="message" class="mt-4">
       <div class="divider color-tan">Kết quả</div>
@@ -73,22 +60,26 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { getModule } from "vuex-module-decorators";
-import GenderModule from "../store/gender/gender.module";
+import IdentificationCelebrityModule from "../store/identification_celebrity/identification_celebrity.module";
 
 @Component
-export default class OCR extends Vue {
+export default class IdentificationCelebrity extends Vue {
   private url = "";
   private rotate = false;
   private response = null;
   private message = "";
   private formData = new FormData();
-  private GenderInstance = getModule(GenderModule, this.$store);
+  private IdentificationCelebrityInstance = getModule(
+    IdentificationCelebrityModule,
+    this.$store,
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFileChange(e: any) {
     const file = e.target.files[0];
     this.url = URL.createObjectURL(file);
     this.formData.append("file", file);
+    this.formData.append("top", "5");
   }
 
   clear() {
@@ -105,10 +96,10 @@ export default class OCR extends Vue {
     } else {
       this.rotate = true;
       try {
-        await this.GenderInstance.upload(this.formData);
-        this.response = this.GenderInstance.getResponse;
+        await this.IdentificationCelebrityInstance.upload(this.formData);
+        this.response = this.IdentificationCelebrityInstance.getResponse;
       } catch (e) {
-        this.$toasted.error("Ảnh không có khuôn mặt.");
+        this.$toasted.error("Lỗi định dạng file.");
         this.message = e.response.data.message;
       }
     }
@@ -118,18 +109,6 @@ export default class OCR extends Vue {
 </script>
 
 <style scoped lang="scss">
-th {
-  text-align: center;
-}
-
-td {
-  text-align: center;
-  vertical-align: middle !important;
-  img {
-    border-radius: 0.55rem;
-  }
-}
-
 @import "../assets/css/style.scss";
 @import "../assets/css/form.scss";
 </style>

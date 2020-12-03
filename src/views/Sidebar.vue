@@ -48,6 +48,19 @@
         </li>
       </ul>
     </div>
+    <div class="sidebar-menu bg-dark-ui border-ui mb-3">
+      <ul>
+        <li>
+          <router-link :to="{ name: 'IdentificationCelebrity' }">
+            <font-awesome-icon
+              class="text-warning mr-2"
+              :icon="['fas', 'user-check']"
+              fixed-width
+            />Nhận dạng người nổi tiếng
+          </router-link>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

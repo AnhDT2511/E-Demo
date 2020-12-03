@@ -5,6 +5,7 @@ import OCR from "../views/OCR.vue";
 import Match11 from "../views/Match11.vue";
 import Match1n from "../views/Match1n.vue";
 import Gender from "../views/Gender.vue";
+import IdentificationCelebrity from "../views/IdentificationCelebrity.vue";
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,14 @@ const routes: Array<RouteConfig> = [
         component: Gender,
         meta: {
           title: "Xác định giới tính - tuổi",
+        },
+      },
+      {
+        path: "search",
+        name: "IdentificationCelebrity",
+        component: IdentificationCelebrity,
+        meta: {
+          title: "Nhận dạng người nổi tiếng",
         },
       },
     ],

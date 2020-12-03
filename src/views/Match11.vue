@@ -67,12 +67,24 @@
           <td>Thông báo</td>
           <td>{{ response.message }}</td>
         </tr>
+        <tr v-if="response.face1">
+          <td>Khuôn mặt 1</td>
+          <td>
+            <img v-bind:src="'data:image/jpeg;base64,' + response.face1" />
+          </td>
+        </tr>
+        <tr v-if="response.face2">
+          <td>Khuôn mặt 2</td>
+          <td>
+            <img v-bind:src="'data:image/jpeg;base64,' + response.face2" />
+          </td>
+        </tr>
       </table>
 
-      <h6 class="mt-4">Raw data</h6>
+      <!-- <h6 class="mt-4">Raw data</h6>
       <div class="raw-data">
         {{ response }}
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -131,6 +143,10 @@ export default class Info extends Vue {
 </script>
 
 <style scoped lang="scss">
+td img {
+  border-radius: 0.55rem;
+}
+
 @import "../assets/css/style.scss";
 @import "../assets/css/form.scss";
 </style>

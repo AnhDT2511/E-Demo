@@ -2,12 +2,12 @@ import { fisAxios } from "@/libs/axios";
 import { RESOURCE } from "@/resource/resource";
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 
-const api = RESOURCE.match;
+const api = RESOURCE.identificationCelebrity;
 @Module({
   namespaced: true,
-  name: "match1n",
+  name: "identificationCelebrity",
 })
-export default class MatchModule extends VuexModule {
+export default class IdentificationCelebrityModule extends VuexModule {
   // State
   response = null;
 

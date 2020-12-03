@@ -4,6 +4,7 @@ import OCRModule from "./ocr/ocr.module";
 import Match11Module from "./match11/match11.module";
 import Match1nModule from "./match1n/match1n.module";
 import GenderModule from "./gender/gender.module";
+import IdentificationCelebrityModule from "./identification_celebrity/identification_celebrity.module";
 
 Vue.use(Vuex);
 
@@ -16,5 +17,6 @@ export default new Vuex.Store({
     match11: Match11Module,
     match1n: Match1nModule,
     gender: GenderModule,
+    identificationCelebrity: IdentificationCelebrityModule,
   },
 });
