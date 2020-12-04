@@ -40,7 +40,7 @@
         <li>
           <router-link :to="{ name: 'Gender' }">
             <font-awesome-icon
-              class="text-warning mr-2"
+              class="text-info mr-2"
               :icon="['fas', 'venus-mars']"
               fixed-width
             />Xác định giới tính
