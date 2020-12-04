@@ -38,12 +38,12 @@
     <div class="sidebar-menu bg-dark-ui border-ui mb-3">
       <ul>
         <li>
-          <router-link :to="{ name: 'Gender' }">
+          <router-link :to="{ name: 'IdentificationCelebrity' }">
             <font-awesome-icon
               class="text-info mr-2"
-              :icon="['fas', 'venus-mars']"
+              :icon="['fas', 'user-check']"
               fixed-width
-            />Xác định giới tính
+            />Nhận dạng người nổi tiếng
           </router-link>
         </li>
       </ul>
@@ -51,12 +51,12 @@
     <div class="sidebar-menu bg-dark-ui border-ui mb-3">
       <ul>
         <li>
-          <router-link :to="{ name: 'IdentificationCelebrity' }">
+          <router-link :to="{ name: 'Gender' }">
             <font-awesome-icon
               class="text-warning mr-2"
-              :icon="['fas', 'user-check']"
+              :icon="['fas', 'venus-mars']"
               fixed-width
-            />Nhận dạng người nổi tiếng
+            />Xác định giới tính
           </router-link>
         </li>
       </ul>
