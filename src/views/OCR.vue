@@ -93,9 +93,10 @@ export default class OCR extends Vue {
   clear() {
     this.url = "";
     this.rotate = false;
-    this.end = 0;
+    this.type = 2;
     this.response = null;
     this.formData = new FormData();
+    this.end = 0;
   }
 
   async submitFiles() {
