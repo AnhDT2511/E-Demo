@@ -92,10 +92,12 @@ export default class OCR extends Vue {
 
   clear() {
     this.url = "";
-    this.rotate = false;
     this.type = 2;
+    this.filter = 0;
+    this.rotate = false;
     this.response = null;
     this.formData = new FormData();
+    this.start = 0;
     this.end = 0;
   }
 
