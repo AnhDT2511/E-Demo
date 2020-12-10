@@ -5,7 +5,7 @@ import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 const api = RESOURCE.ocr;
 @Module({
   namespaced: true,
-  name: "gender",
+  name: "ocr",
 })
 export default class OCRModule extends VuexModule {
   // State
