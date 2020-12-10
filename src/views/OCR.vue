@@ -118,7 +118,7 @@ export default class OCR extends Vue {
         this.response = e.response.data;
       }
       this.end = new Date().getTime() - this.start;
-      console.log(this.end / 1000);
+      console.log("time: " + this.end / 1000);
       this.rotate = false;
     }
   }
